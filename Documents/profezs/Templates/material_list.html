@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>{{ display_subject }} | Study Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+            background-image: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.05) 0px, transparent 50%);
+        }
+
+        .chapter-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-2px);
+            background-color: white;
+            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.1);
+            border-color: #2563eb;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body class="font-['Inter'] text-slate-900">
+
+    <nav class="glass-nav fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="/{{ category }}/"
+                    class="group flex items-center justify-center w-10 h-10 rounded-full hover:bg-blue-50 transition-all">
+                    <span class="material-symbols-outlined text-blue-900">arrow_back</span>
+                </a>
+                <h1 class="text-xl font-black tracking-tighter text-blue-900 uppercase italic">{{ display_subject }}
+                    Section</h1>
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-widest bg-blue-600 text-white px-3 py-1.5 rounded-lg">
+                {{ display_category }} / 2024-25
+            </span>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-6 max-w-3xl mx-auto">
+
+        <div class="space-y-4">
+    <h2 class="text-3xl font-black text-indigo-900 mb-6 capitalize">{{ display_subject }} Chapters</h2>
+
+    {% for chapter in chapters %}
+        <div class="chapter-card bg-white p-5 rounded-2xl flex items-center justify-between shadow-sm border border-black/5 hover:shadow-md transition-all">
+            <div class="flex items-center gap-5">
+                <div class="w-10 h-10 bg-indigo-50 text-indigo-700 rounded-xl flex items-center justify-center font-black text-sm">
+                    {{ forloop.counter|stringformat:"02d" }}
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-800">{{ chapter.name }}</h4>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">Standard X Resources</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <a href="{{ chapter.file_url }}" target="_blank" class="p-2 text-slate-400 hover:text-indigo-600 transition-colors">
+                    <span class="material-symbols-outlined">visibility</span>
+                </a>
+                <a href="{{ chapter.file_url }}" download class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition-all">
+                    <span class="material-symbols-outlined text-sm">download</span>
+                    Download
+                </a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
+            <p class="text-slate-400 font-medium italic">No resources found for {{ display_subject }} yet.</p>
+        </div>
+    {% endfor %}
+</div>
+
+    </main>
+
+</body>
+
+</html>
