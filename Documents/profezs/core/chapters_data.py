@@ -64,7 +64,7 @@ SYLLABUS = {
             {'id': 3, 'name': 'Behind Sensations',
                 'file_url': '/media/sslc/bio/ch3.pdf'},
             {'id': 4, 'name': 'Chemoreception in Organisms',
-                'file_url': '/media/sslc/bio/ch4.pdf'},
+                'file_url': '/media/sslc/bio/ch4.pdf'},    
             {'id': 5, 'name': 'Immunity and Healthcare',
                 'file_url': '/media/sslc/bio/ch5.pdf'},
             {'id': 6, 'name': 'Biology and Technology',
